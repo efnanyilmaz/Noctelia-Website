@@ -39,7 +39,7 @@ if(page==='urun'){
           <div class="qty pd-qty" aria-label="Adet"><button type="button" data-d="-1" aria-label="Azalt">−</button><span id="pdQty">1</span><button type="button" data-d="1" aria-label="Artır">+</button></div>
           <button class="btn pd-add" data-add-id="${p.id}" data-size="30" data-qty="1">Sepete ekle</button>
         </div>
-        <a class="pd-faq" href="sss.html">Sorunuz mu var? Sıkça sorulanlara göz atın →</a>
+        <a class="pd-faq" href="/sss">Sorunuz mu var? Sıkça sorulanlara göz atın →</a>
         <div class="pd-sticky" aria-hidden="true"><span class="ps-name"><b>${p.name}</b><small data-price>${tl(p.price[30])}</small></span><button class="btn ps-add" tabindex="-1" data-add-id="${p.id}" data-size="30" data-qty="1">Sepete ekle</button></div>
       </div>
     </div>
@@ -68,7 +68,7 @@ if(page==='urun'){
     <section class="pd-more" aria-labelledby="pdMoreT">
       <h2 id="pdMoreT">Koleksiyonun <em>diğer kokuları</em></h2>
       <div class="pd-others">${(i=>PRODUCTS.slice(i+1).concat(PRODUCTS.slice(0,i)).slice(0,3))(PRODUCTS.indexOf(p)).map(o=>`
-        <a class="pd-other" href="urun.html?id=${o.id}" style="--juice:${o.juice}">
+        <a class="pd-other" href="/urun?id=${o.id}" style="--juice:${o.juice}">
           <span class="po-stage">${vessel(o,false)}</span>
           <span class="po-fam"><i class="sw"></i>${o.family}</span>
           <b>${o.name}</b><span class="po-pr">${tl(o.price[30])}'den başlayan fiyatlarla</span>
@@ -105,13 +105,13 @@ if(page==='sepet'){
   function render(){
     const items=Cart.items();
     if(!items.length){
-      list.innerHTML=`<div class="cp-empty"><p>Sepetiniz şu an boş.</p><a class="btn" href="koleksiyon.html">Koleksiyonu keşfet</a></div>`;
+      list.innerHTML=`<div class="cp-empty"><p>Sepetiniz şu an boş.</p><a class="btn" href="/koleksiyon">Koleksiyonu keşfet</a></div>`;
       sum.hidden=true;return;
     }
     sum.hidden=false;
     list.innerHTML=items.map(i=>`<article class="cp-item">
-        <a class="cp-img" href="urun.html?id=${i.id}">${shot(i.p,false)}</a>
-        <div class="cp-info"><p class="c-fam"><i class="sw" style="--juice:${i.p.juice}"></i>${i.p.family}</p><a class="cp-name" href="urun.html?id=${i.id}">${i.p.name}</a><span class="cp-size">${i.size} ml · Eau de Parfum · ${tl(i.p.price[i.size])}</span></div>
+        <a class="cp-img" href="/urun?id=${i.id}">${shot(i.p,false)}</a>
+        <div class="cp-info"><p class="c-fam"><i class="sw" style="--juice:${i.p.juice}"></i>${i.p.family}</p><a class="cp-name" href="/urun?id=${i.id}">${i.p.name}</a><span class="cp-size">${i.size} ml · Eau de Parfum · ${tl(i.p.price[i.size])}</span></div>
         <div class="qty" data-id="${i.id}" data-size="${i.size}"><button data-d="-1" aria-label="Azalt">−</button><span>${i.qty}</span><button data-d="1" aria-label="Artır">+</button></div>
         <b class="cp-line">${tl(i.line)}</b>
         <button class="cp-rm" data-id="${i.id}" data-size="${i.size}" aria-label="${i.p.name} ürününü kaldır"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
@@ -126,7 +126,7 @@ if(page==='sepet'){
       <label class="cp-gift"><input type="checkbox" id="cpGift"> Hediye paketi istiyorum <span>Ücretsiz</span></label>
       <button class="btn cp-pay" id="cpPay">Ödemeye geç</button>
       <p class="cp-msg" id="cpMsg" role="status"></p>
-      <a class="ghost cp-back" href="koleksiyon.html">Alışverişe devam et</a>`;
+      <a class="ghost cp-back" href="/koleksiyon">Alışverişe devam et</a>`;
     $('#cpPay').addEventListener('click',()=>{$('#cpMsg').textContent='Ödeme altyapısı bağlandığında bu adımda güvenli ödeme sayfasına yönlendirileceksiniz.'});
   }
   list.addEventListener('click',e=>{
@@ -141,10 +141,10 @@ if(page==='koleksiyon'){
   const grid=$('#shopGrid');
   const NOTES={"pivoine-velours": "Safran, şakayık, iris, heliotrop, ambrette, kaşmir, beyaz misk, sedir", "orchidee-noire": "Rom, bal, siyah orkide, sümbülteber, vanilya, mür, süet, sandal ağacı", "rose-nocturne": "Pembe biber, Damask gülü, yasemin, portakal çiçeği, oud, labdanum, vanilya, kehribar", "ambre-interdit": "Acı badem, kimyon, yıldız anason, sambac yasemini, jakaranda, vanilya, sandal, misk", "tulipe-rosee": "Armut, pembe greyfurt, lale, manolya, frezya, beyaz misk, kaşmir ağacı", "jasmin-de-minuit": "Neroli, mandalina, sambac yasemini, sümbülteber, portakal çiçeği, sandal ağacı, vanilya", "magnolia-emeraude": "Bergamot, incir yaprağı, manolya, yasemin çayı, nergis, vetiver, sedir, beyaz misk", "lotus-dombre": "Yuzu, nane yaprağı, kakule, nilüfer, su zambağı, iris, ambergris, beyaz misk", "camelia-noir": "Siyah biber, tütsü, bergamot, kamelya, süsen, gül, deri, paçuli, kehribar"};
   grid.innerHTML=PRODUCTS.map((p,i)=>`<article class="card" data-product="${p.id}" data-family="${p.family}" data-i="${i}" style="--juice:${p.juice}">
-      <a class="c-stage" href="urun.html?id=${p.id}" aria-label="${p.name} ürün sayfası">${p.tag?`<span class="c-tag">${p.tag}</span>`:''}${vessel(p)}</a>
+      <a class="c-stage" href="/urun?id=${p.id}" aria-label="${p.name} ürün sayfası">${p.tag?`<span class="c-tag">${p.tag}</span>`:''}${vessel(p)}</a>
       <div class="c-info">
         <p class="c-fam"><i class="sw"></i>${p.family}</p>
-        <div class="meta"><h3><a href="urun.html?id=${p.id}">${p.name}</a></h3><span class="pr" data-price>${tl(p.price[30])}</span></div>
+        <div class="meta"><h3><a href="/urun?id=${p.id}">${p.name}</a></h3><span class="pr" data-price>${tl(p.price[30])}</span></div>
         <p class="notes">${NOTES[p.id]||[...p.notes.top,...p.notes.heart,...p.notes.base].join(', ')}</p>
         ${sizePicker(p)}
         <button class="add" data-add-id="${p.id}" data-size="30">Sepete ekle <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M12 11.5v5M9.5 14h5"/></svg></span></button>
@@ -195,9 +195,9 @@ if(page==='hesap'){
     const n=N.Cart.count();
     me.innerHTML=`<h1 class="lgn-h" id="acHi">Hoş geldiniz, <em>${esc(u.name.split(' ')[0])}</em></h1>
       <p class="lgn-sub">${esc(u.email)} ile giriş yaptınız.</p>
-      <div class="ac-tiles"><a href="koleksiyon.html"><div><b>Siparişlerim</b><br><span>Henüz siparişiniz yok</span></div><span>→</span></a>
-      <a href="sepet.html"><div><b>Sepetim</b><br><span>${n?n+' ürün':'Sepetiniz boş'}</span></div><span>→</span></a>
-      <a href="index.html#liste" data-news><div><b>Bülten</b><br><span>${u.news||N.News.has(u.email)?'Abonesiniz':'Abone olmak için dokunun'}</span></div><span>→</span></a></div>
+      <div class="ac-tiles"><a href="/koleksiyon"><div><b>Siparişlerim</b><br><span>Henüz siparişiniz yok</span></div><span>→</span></a>
+      <a href="/sepet"><div><b>Sepetim</b><br><span>${n?n+' ürün':'Sepetiniz boş'}</span></div><span>→</span></a>
+      <a href="/#liste" data-news><div><b>Bülten</b><br><span>${u.news||N.News.has(u.email)?'Abonesiniz':'Abone olmak için dokunun'}</span></div><span>→</span></a></div>
       <button class="ac-out" type="button" id="acOut">Çıkış yap</button>`;
     $('#acOut').addEventListener('click',()=>{User.clear();form.reset();step('mail',false);render();N.toast('Çıkış yaptınız')});
   }
@@ -277,11 +277,11 @@ if(page==='bul'){
     const best=byId(ID[rank[0][0]]),alts=rank.slice(1,3).map(r=>byId(ID[r[0]]));
     const max=Q.reduce((n,q)=>n+Math.max(...q.a.map(o=>Math.max(0,...Object.values(o[1])))),0),pct=Math.min(98,Math.round(rank[0][1]/max*100));
     body.innerHTML=`<div class="qz-res" style="--juice:${best.juice}">
-      <a class="qz-stage" href="urun.html?id=${best.id}" aria-label="${best.name} ürün sayfası">${vessel(best,true,true)}</a>
+      <a class="qz-stage" href="/urun?id=${best.id}" aria-label="${best.name} ürün sayfası">${vessel(best,true,true)}</a>
       <div class="qz-info"><p class="eyebrow">Sana en yakın koku · %${pct} uyum</p><h2>${best.name}</h2><p class="c-fam"><i class="sw"></i>${best.family}</p>
         <p class="qz-lede">${best.lede}</p>
-        <div class="qz-cta"><button class="btn" data-add-id="${best.id}" data-size="30">Sepete ekle <span class="price">${tl(best.price[30])}</span></button><a class="ghost" href="urun.html?id=${best.id}">Kokuyu incele</a></div>
-        <p class="qz-alt">Şunlar da sana yakın: ${alts.map(a=>`<a href="urun.html?id=${a.id}">${a.name}</a>`).join(' · ')}</p>
+        <div class="qz-cta"><button class="btn" data-add-id="${best.id}" data-size="30">Sepete ekle <span class="price">${tl(best.price[30])}</span></button><a class="ghost" href="/urun?id=${best.id}">Kokuyu incele</a></div>
+        <p class="qz-alt">Şunlar da sana yakın: ${alts.map(a=>`<a href="/urun?id=${a.id}">${a.name}</a>`).join(' · ')}</p>
         <button type="button" class="qz-again">Testi yeniden çöz</button></div></div>`;
     setTimeout(()=>body.querySelector('.pv')?.classList.add('open'),900);
   }

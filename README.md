@@ -30,7 +30,7 @@ Bir portfolyo çalışmasıdır: **Noctélia gerçek bir marka değildir**, site
 noctelia-site/
 ├── index.html          # ana sayfa: hero, koku piramidi, hikâyemiz, koleksiyon, bülten
 ├── koleksiyon.html     # tüm kokular, filtre ve sıralama
-├── urun.html           # ürün sayfası (urun.html?id=rose-nocturne gibi)
+├── urun.html           # ürün sayfası (/urun?id=rose-nocturne gibi)
 ├── kokunu-bul.html     # dört soruluk koku testi
 ├── sepet.html          # sepet
 ├── hesap.html          # giriş ve üyelik
@@ -38,6 +38,7 @@ noctelia-site/
 ├── sss.html            # sıkça sorulan sorular
 ├── yasal.html          # gizlilik, çerezler, kullanım koşulları, KVKK
 ├── 404.html            # bulunamayan sayfa
+├── vercel.json         # temiz adresler (.html uzantısız)
 ├── css/style.css       # tüm stiller
 ├── js/main.js          # ana sayfa animasyonları
 ├── js/store.js         # ürün verileri, sepet, paneller ve ortak bileşenler
@@ -50,17 +51,17 @@ noctelia-site/
 
 ## Çalıştırma
 
-Derleme adımı yoktur. Yerel bir sunucuyla açmak yeterlidir:
+Derleme adımı yoktur. Sayfalar uzantısız adreslerle (`/koleksiyon`, `/urun?id=rose-nocturne`) bağlandığı için temiz adresleri destekleyen bir sunucuyla açın:
 
 ```bash
-python -m http.server 5173
+npx serve -l 5173
 ```
 
 Ardından tarayıcıda `http://localhost:5173` adresini açın.
 
 ## Yayınlama
 
-Klasör herhangi bir statik barındırma hizmetinde (GitHub Pages, Netlify, Vercel) olduğu gibi yayınlanabilir.
+Klasör Vercel'de olduğu gibi yayınlanabilir; `vercel.json` içindeki `cleanUrls` ayarı `.html` uzantılarını adreslerden kaldırır.
 
 ## Lisans
 
