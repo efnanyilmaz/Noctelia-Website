@@ -1,6 +1,15 @@
 /*! © 2026 Efnan Yılmaz. Tüm hakları saklıdır. İzinsiz kopyalanamaz, kullanılamaz veya dağıtılamaz. Ayrıntılar: LICENSE */
 /* Noctélia — products, cart (kept in localStorage so it follows you across pages) and the cart drawer */
 (function(){
+/* links use clean addresses (/koleksiyon); opened straight from disk there is no server to resolve them, so point them at the .html files */
+if(location.protocol==='file:'){
+  const toFile=e=>{
+    const a=e.target.closest&&e.target.closest('a[href^="/"]');if(!a)return;
+    const m=a.getAttribute('href').match(/^\/([^?#]*)(.*)$/);if(!m||m[1].startsWith('/'))return;
+    a.setAttribute('href',(m[1]||'index')+'.html'+m[2]);
+  };
+  document.addEventListener('click',toFile,true);document.addEventListener('auxclick',toFile,true);
+}
 const SIZES=['30','50','100'];
 const PRODUCTS=[
   {id:'pivoine-velours',name:'Pivoine Velours',family:'Çiçeksi · Pudralı · Amber',juice:'#e8a9b4',tag:'',
@@ -100,12 +109,12 @@ function renderDrawer(){
   document.getElementById('drCount').textContent=list.length?`(${Cart.count()})`:'';
   document.getElementById('drShip').innerHTML=shipNote();
   document.getElementById('drList').innerHTML=list.length?list.map(i=>`<li>
-      <a class="dr-img" href="urun.html?id=${i.id}">${shot(i.p,false)}</a>
-      <div class="dr-info"><a href="urun.html?id=${i.id}" class="dr-name">${i.p.name}</a><span class="dr-size">${i.size} ml · Eau de Parfum</span>${qtyCtl(i)}</div>
+      <a class="dr-img" href="/urun?id=${i.id}">${shot(i.p,false)}</a>
+      <div class="dr-info"><a href="/urun?id=${i.id}" class="dr-name">${i.p.name}</a><span class="dr-size">${i.size} ml · Eau de Parfum</span>${qtyCtl(i)}</div>
       <div class="dr-right"><b>${tl(i.line)}</b><button class="dr-rm" data-id="${i.id}" data-size="${i.size}">Kaldır</button></div></li>`).join('')
-    :`<li class="dr-empty"><p>Sepetiniz şu an boş.</p><a class="ghost" href="koleksiyon.html" data-close>Koleksiyonu keşfet</a></li>`;
+    :`<li class="dr-empty"><p>Sepetiniz şu an boş.</p><a class="ghost" href="/koleksiyon" data-close>Koleksiyonu keşfet</a></li>`;
   document.getElementById('drFoot').innerHTML=list.length?`<div class="dr-sum"><span>Ara toplam</span><b>${tl(Cart.subtotal())}</b></div><p class="dr-note">Kargo ve vergiler ödeme adımında hesaplanır.</p>
-    <a class="btn dr-go" href="sepet.html">Sepete git ve öde</a><button class="dr-cont" data-close>Alışverişe devam et</button>`:'';
+    <a class="btn dr-go" href="/sepet">Sepete git ve öde</a><button class="dr-cont" data-close>Alışverişe devam et</button>`:'';
 }
 drawer.addEventListener('click',e=>{
   if(e.target.closest('[data-close]')){closeDrawer();return}
