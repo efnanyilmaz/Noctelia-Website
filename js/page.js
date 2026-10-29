@@ -58,7 +58,7 @@ if(page==='urun'){
           </svg>
           <div class="pz-vessel">${vessel(p,false)}</div>
         </div>
-        ${[['I','Üst notalar','0 – 15 dk',p.notes.top,279],['II','Kalp notaları','30 dk – 4 sa',p.notes.heart,375],['III','Dip notalar','4 sa +',p.notes.base,471]].map(([rn,t,time,list,y],i)=>`
+        ${[['I','Üst notalar','0 – 15 dk',p.notes.top,279],['II','Kalp notaları','30 dk – 4 saat',p.notes.heart,375],['III','Dip notalar','4 saat +',p.notes.base,471]].map(([rn,t,time,list,y],i)=>`
         <div class="pz-tier" data-tier="${i}" style="--y:${y}">
           <div class="pz-label"><span class="rn">${rn}</span><b>${t}</b><small>${time}</small></div>
           <p class="pz-notes">${pzLines(list).join('<br>')}</p>
