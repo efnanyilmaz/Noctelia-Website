@@ -362,4 +362,8 @@ const QUIZ={
 
 window.Noctelia={PRODUCTS,byId,tl,Cart,User,News,shot,vessel,CAPS,QUIZ,sizePicker,wireSizes,openDrawer,toast,FREE_SHIP,SHIP_FEE,lenis};
 wireSizes();
+/* footer columns stay open on wide screens and fold into rows on phones */
+const footMq=matchMedia('(max-width:760px)'),footFold=()=>document.querySelectorAll('footer details.f-col').forEach(d=>d.open=!footMq.matches);
+footFold();footMq.addEventListener('change',footFold);
+document.querySelectorAll('footer .f-col summary').forEach(su=>su.addEventListener('click',e=>{if(!footMq.matches)e.preventDefault()}));
 })();
