@@ -224,7 +224,7 @@ footer{border-top:1px solid var(--line-d);background:var(--night)}
 .f-brand{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-areas:". logo region" ". social .";align-items:center;row-gap:20px;padding-top:clamp(40px,5vw,60px)}
 .f-brand .logo{grid-area:logo}
 .f-brand .logo b{font-size:clamp(24px,2.2vw,30px)}
-.f-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;padding-block:clamp(36px,4.5vw,56px) clamp(28px,4vw,48px)}
+.f-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;max-width:880px;padding-block:clamp(36px,4.5vw,56px) clamp(28px,4vw,48px)}
 .f-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-d)}
 .f-h{margin:0 0 4px;font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.22em;color:var(--gold)}
 .f-col a{width:fit-content;transition:color .3s}
