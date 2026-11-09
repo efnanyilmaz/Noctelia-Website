@@ -1,72 +1,71 @@
 # Noctélia — Lüks Parfüm Sitesi
 
-Hayali bir lüks parfüm markası için tasarlanmış, animasyonlu ve çok sayfalı bir e-ticaret vitrin sitesi.
-Bir portfolyo çalışmasıdır: **Noctélia gerçek bir marka değildir**, sitede gerçek satış yapılmaz ve formlar hiçbir yere veri göndermez.
+Hayali bir lüks parfüm markası için tasarlayıp geliştirdiğim, animasyonlu ve çok sayfalı bir e-ticaret vitrin sitesi.
 
-## Öne çıkanlar
+**[Canlı demo](https://noctelia-website.vercel.app)** · [English](README.en.md)
 
-- **Açan gül (hero):** Kapak kalkar, sprey başlığı basar, parfüm buharı saçılır ve şişeden SVG ile çizilmiş bir gül açar; etrafında yapraklar uçuşur, ardından gül kapanır ve döngü baştan başlar.
-- **Şişenin yolculuğu:** Aşağı kaydırınca gül kaydırmayla birlikte şişeye geri katlanır, kapak kapanır ve şişe küçülerek koku piramidinin ortasına iner; yukarı çıkınca aynı yoldan geri döner.
-- **Koku piramidi:** Altın çizgiler kendini çizer, kaydırdıkça üst, kalp ve dip notaları sırayla yanar. Ürün sayfalarında her kokunun kendi şişesi ve notalarıyla tekrar kullanılır.
-- **Hikâyemiz:** Dokuz kokunun dokuz altın çiçek kapağı, kaydırmayla ortadan dışa açılır.
-- **Koleksiyon:** Sayfa sayfa kayan kaydırıcı, aile filtresi ve fiyat sıralaması; fareyle gelince açılan kapaklar ve sepete ekle.
-- **Ürün sayfası:** Kapalı, açık ve kapak detayı görünümleri, boyut ve adet seçimi, telefonda sabit satın alma çubuğu.
-- **Kokunu bul:** Dört soruluk test, sonuçta en yakın koku ve iki alternatif.
-- **Mağazalar:** Leaflet haritası ve konum arama.
-- **Sepet ve hesap:** Yandan açılan sepet paneli, sepet sayfası, giriş ve üyelik akışı; veriler yalnızca tarayıcıda (`localStorage`) tutulur.
-- **Ayrıntılar:** Yumuşak kaydırma (Lenis), altın alt çizgili bağlantılar, tutarlı buton dili, koyu şarap ve altın renk sistemi, `prefers-reduced-motion` desteği; masaüstü ve telefon için ayrı düzen.
+| Ana sayfa | Ürün sayfası |
+| --- | --- |
+| [![Noctélia ana sayfa](docs/home.jpg)](https://noctelia-website.vercel.app) | [![Noctélia ürün sayfası](docs/urun.jpg)](https://noctelia-website.vercel.app/urun?id=rose-nocturne) |
 
-## Teknolojiler
+## Proje hakkında
 
-- HTML5, CSS3 (custom properties, grid, mask, `clamp()`)
-- Vanilla JavaScript, SVG ve Canvas 2D
-- [GSAP 3](https://gsap.com/) + ScrollTrigger, [Lenis](https://lenis.darkroom.engineering/) (CDN üzerinden)
-- [Leaflet](https://leafletjs.com/) + Esri harita karoları (mağazalar sayfası)
-- Google Fonts: Bodoni Moda, Jost
+Bu bir portfolyo çalışması. Amacım, bir lüks markanın sitesinde beklenen hissi kaydırmaya bağlı animasyonlarla vermek ve bunu bir framework kullanmadan, akıcı çalışacak şekilde kurmaktı. Noctélia gerçek bir marka değildir; sitede satış yapılmaz ve formlar hiçbir yere veri göndermez.
 
-## Klasör yapısı
+## Özellikler
 
-```
-noctelia-site/
-├── index.html          # ana sayfa: hero, koku piramidi, hikâyemiz, koleksiyon, bülten
-├── koleksiyon.html     # tüm kokular, filtre ve sıralama
-├── urun.html           # ürün sayfası (/urun?id=rose-nocturne gibi)
-├── kokunu-bul.html     # dört soruluk koku testi
-├── sepet.html          # sepet
-├── hesap.html          # giriş ve üyelik
-├── magazalar.html      # mağaza bulucu
-├── sss.html            # sıkça sorulan sorular
-├── yasal.html          # gizlilik, çerezler, kullanım koşulları, KVKK
-├── 404.html            # bulunamayan sayfa
-├── vercel.json         # temiz adresler (.html uzantısız)
-├── css/style.css       # tüm stiller
-├── js/main.js          # ana sayfa animasyonları
-├── js/store.js         # ürün verileri, sepet, paneller ve ortak bileşenler
-├── js/page.js          # iç sayfalar (ürün, koleksiyon, sepet, hesap, test, mağazalar)
-└── assets/img/         # şişe, kapak, çiçek ve ikon görselleri
-```
+- **Açılış animasyonu:** Kapak kalkar, sprey basılır ve şişeden SVG ile çizilmiş bir gül açar; etrafında yapraklar ve parçacıklar uçuşur, sonra döngü baştan başlar.
+- **Kaydırmaya bağlı geçiş:** Aşağı kaydırıldıkça gül şişeye geri katlanır, kapak kapanır ve şişe küçülerek koku piramidinin ortasına iner. Yukarı kaydırınca aynı yoldan geri döner.
+- **Koku piramidi:** Çizgiler kendini çizer; üst, kalp ve dip notaları sırayla belirir. Ürün sayfalarında her koku kendi şişesi ve notalarıyla aynı yapıyı kullanır.
+- **Koleksiyon:** Dokuz koku; aile filtresi, fiyat sıralaması ve hızlı sepete ekleme.
+- **Ürün sayfası:** Kapalı, açık ve kapak detayı görünümleri; 30 / 50 / 100 ml seçimi, adet ve mobilde sabit satın alma çubuğu.
+- **Kokunu bul:** Dört soruluk test; sonuçta en uygun koku ve iki alternatif önerilir.
+- **Mağazalar:** Leaflet haritası ve konuma göre arama.
+- **Sepet ve hesap:** Yandan açılan sepet paneli, sepet sayfası, giriş ve üyelik akışı.
+- **Ayrıca:** SSS, yasal metinler (KVKK, çerezler, kullanım koşulları), 404 sayfası, masaüstü ve mobil için ayrı düzen, `prefers-reduced-motion` desteği
 
-Ürün adları, fiyatlar (30 / 50 / 100 ml), notalar ve açıklamalar `js/store.js` içindeki `PRODUCTS` listesinden gelir.
-İletişim adresi olarak yer tutucu `you@example.com` kullanılır.
+## Teknik notlar
+
+- Gül, yaprakları JavaScript ile üretilen bir SVG sahnesi. Uçuşan yapraklar ve parçacıklar bu sahnenin arkasında ve önünde duran iki ayrı Canvas 2D katmanında çiziliyor; böylece derinlik hissi oluşuyor.
+- Kaydırma animasyonları GSAP ScrollTrigger ile, yumuşak kaydırma Lenis ile yapılıyor. Hareketi azaltmayı seçen kullanıcılarda animasyonlar kapanıyor.
+- Ürün adları, fiyatlar, notalar ve açıklamalar `js/store.js` içindeki tek bir `PRODUCTS` listesinden geliyor; koleksiyon, ürün sayfası, test ve sepet bu listeyi kullanıyor.
+- Sepet ve hesap verileri yalnızca tarayıcıda (`localStorage`) tutuluyor.
+- Sayfalar `.html` uzantısı olmadan (`/koleksiyon`, `/urun?id=rose-nocturne`) bağlanıyor; bunu `vercel.json` içindeki `cleanUrls` ayarı sağlıyor.
 
 ## Çalıştırma
 
-Derleme adımı yoktur. Sayfalar uzantısız adreslerle (`/koleksiyon`, `/urun?id=rose-nocturne`) bağlandığı için temiz adresleri destekleyen bir sunucuyla açın:
+Derleme adımı yoktur. Uzantısız adresleri destekleyen bir statik sunucu ile açın:
 
 ```bash
 npx serve -l 5173
 ```
 
-Ardından tarayıcıda `http://localhost:5173` adresini açın.
+Ardından `http://localhost:5173` adresine gidin. Vercel'e olduğu gibi yüklenebilir.
 
-## Yayınlama
+## Klasör yapısı
 
-Klasör Vercel'de olduğu gibi yayınlanabilir; `vercel.json` içindeki `cleanUrls` ayarı `.html` uzantılarını adreslerden kaldırır.
+```
+├── index.html          # ana sayfa: açılış, koku piramidi, hikâye, koleksiyon, bülten
+├── koleksiyon.html     # tüm kokular, filtre ve sıralama
+├── urun.html           # ürün sayfası
+├── kokunu-bul.html     # koku testi
+├── sepet.html, hesap.html, magazalar.html, sss.html, yasal.html, 404.html
+├── vercel.json         # uzantısız adresler
+├── css/style.css
+├── js/main.js          # ana sayfa animasyonları
+├── js/store.js         # ürün verisi, sepet ve ortak bileşenler
+├── js/page.js          # iç sayfalar
+└── assets/img/
+```
+
+## Teknolojiler
+
+HTML, CSS, JavaScript · GSAP + ScrollTrigger · Lenis · SVG · Canvas 2D · Leaflet
 
 ## Lisans
 
-© 2026 Efnan Yılmaz. Tüm hakları saklıdır. Kod, tasarım ve görseller izinsiz kopyalanamaz, değiştirilemez, dağıtılamaz veya ticari amaçla kullanılamaz. Ayrıntılar için [LICENSE](LICENSE) dosyasına bakın.
+© 2026 Efnan Yılmaz. Tüm hakları saklıdır. Kod, tasarım ve görseller izinsiz kopyalanamaz veya kullanılamaz. Ayrıntılar için [LICENSE](LICENSE) dosyasına bakın.
 
 ---
 
-Tasarım ve geliştirme — **Efnan Yılmaz**
+Tasarım ve geliştirme: **Efnan Yılmaz** · [LinkedIn](https://linkedin.com/in/efnanyilmaz)
